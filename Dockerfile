@@ -1,15 +1,9 @@
+FROM v2ray/official
 
-#FROM alpine:latest
-FROM heroku/heroku:18
+RUN adduser -D myuser
+USER myuser
 
-#ENV CONFIG_JSON1={\"log\":{\"access\":\"\",\"error\":\"\",\"loglevel\":\"warning\"},\"inbound\":{\"protocol\":\"vmess\",\"port\": 
-#ENV CONFIG_JSON2=,\"settings\":{\"clients\":[{\"id\":\" 
-#ENV CONFIG_JSON3=\",\"alterId\":64}]},\"streamSettings\":{\"network\":\"ws\"}},\"inboundDetour\":[],\"outbound\":{\"protocol\":\"freedom\",\"settings\":{}}} 
+WORKON /usr/bin/v2ray/
+ADD entrypoint.sh /usr/bin/v2ray/
 
-RUN mkdir -m 777 /v2raybin 
- 
-ADD entrypoint.sh /entrypoint.sh
-ADD server_config.json /v2raybin/config.json
-RUN chmod +x /entrypoint.sh 
-
-CMD /entrypoint.sh
+CMD ["/bin/sh", "/usr/bin/v2ray/entrypoint.sh"]
