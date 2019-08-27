@@ -1,9 +1,21 @@
-FROM v2ray/official
+FROM v2ray/official as download
 
-RUN adduser -D myuser
-USER myuser
 
-WORKON /usr/bin/v2ray/
-ADD entrypoint.sh /usr/bin/v2ray/
+FROM heroku/heroku:18
 
-CMD ["/bin/sh", "/usr/bin/v2ray/entrypoint.sh"]
+LABEL maintainer 'fbigun <olutyo@gmail.com>'
+
+ENV PATH /usr/bin/v2ray:$PATH
+COPY --from=download /usr/bin/v2ray/v2ray /usr/bin/v2ray/
+COPY --from=download /usr/bin/v2ray/v2ctl /usr/bin/v2ray/
+COPY --from=download /usr/bin/v2ray/geoip.dat /usr/bin/v2ray/
+COPY --from=download /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/
+COPY server_config.json /etc/v2ray/config.json
+ADD entrypoint.sh /
+
+RUN set -ex && \
+    mkdir /var/log/v2ray/ &&\
+    chmod +x /usr/bin/v2ray/v2ctl && \
+    chmod +x /usr/bin/v2ray/v2ray
+
+CMD ["/bin/sh", "/entrypoint.sh"]
