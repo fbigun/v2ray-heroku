@@ -14,10 +14,5 @@
   },
   "website": "https://github.com/fbigun/v2ray-heroku",
   "repository": "https://github.com/fbigun/v2ray-heroku",
-  "stack": "container",
-  "buildpacks": [
-    {
-      "url": "heroku/go"
-    }
-  ]
+  "stack": "container"
  }
