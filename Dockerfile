@@ -18,4 +18,4 @@ RUN set -ex && \
     chmod +x /usr/bin/v2ray/v2ctl && \
     chmod +x /usr/bin/v2ray/v2ray
 
-CMD ["/bin/sh", "-c", "entrypoint.sh"]
+CMD ["/bin/sh", "/entrypoint.sh"]
