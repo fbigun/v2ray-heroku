@@ -17,9 +17,6 @@
   "stack": "container",
   "buildpacks": [
     {
-      "url": "https://github.com/stomita/heroku-buildpack-phantomjs"
-    },
-    {
       "url": "heroku/go"
     }
   ]
