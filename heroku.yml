@@ -2,4 +2,5 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: /entrypoint.sh
+  web: /bin/sh entrypoint.sh
+  
