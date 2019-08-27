@@ -14,5 +14,13 @@
   },
   "website": "https://github.com/fbigun/v2ray-heroku",
   "repository": "https://github.com/fbigun/v2ray-heroku",
-  "stack": "container"
+  "stack": "container",
+  "buildpacks": [
+    {
+      "url": "https://github.com/stomita/heroku-buildpack-phantomjs"
+    },
+    {
+      "url": "heroku/go"
+    }
+  ]
  }
